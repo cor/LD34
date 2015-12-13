@@ -14,6 +14,8 @@ public class SpaceshipController : MonoBehaviour {
 	public bool leftThrustActivated;
 	public bool rightThrustActivated;
 
+	public GameObject bullet;
+
 	Rigidbody2D rb;
 	// Use this for initialization
 	void Start () {
@@ -45,10 +47,18 @@ public class SpaceshipController : MonoBehaviour {
 
 		if (leftThrustActivated) {
 			rb.AddForceAtPosition(leftThrustVector * speed * -1f, leftThrust1.position);
+//			GameObject bulletCopy = Instantiate(bullet, leftThrust1,);
 		}
 
 		if (rightThrustActivated) {
 			rb.AddForceAtPosition(rightThrustVector * speed * -1f, rightThrust1.position);
 		}
+
+		if ( !(leftThrustActivated || rightThrustActivated )) {
+			rb.angularDrag = 3f;
+		} else {
+			rb.angularDrag = 0.01f;
+		}
 	}
+
 }
