@@ -17,7 +17,7 @@ public class SpaceshipController : MonoBehaviour {
 	public GameObject bullet;
 
 	public float timeBetweenShots = 0.1f;
-	float timeSinceLastShot = Time.time;
+	float timeSinceLastShot;
 
 	Rigidbody2D rb;
 	// Use this for initialization
@@ -75,7 +75,13 @@ public class SpaceshipController : MonoBehaviour {
 		}
 
 		// Adjust drag for finer moevement
-		if ( !(leftThrustActivated || rightThrustActivated )) {
+		if ( leftThrustActivated && rightThrustActivated ) {
+			rb.angularDrag = 2f;
+
+		} else if ( leftThrustActivated || rightThrustActivated ) {
+			rb.angularDrag = 0.001f;
+		
+		} else if ( !(leftThrustActivated || rightThrustActivated )) {
 			rb.angularDrag = 3f;
 		} else {
 			rb.angularDrag = 0.01f;
