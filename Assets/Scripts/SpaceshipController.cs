@@ -16,6 +16,9 @@ public class SpaceshipController : MonoBehaviour {
 
 	public GameObject bullet;
 
+	public float timeBetweenShots = 0.1f;
+	float timeSinceLastShot = Time.time;
+
 	Rigidbody2D rb;
 	// Use this for initialization
 	void Start () {
@@ -45,15 +48,33 @@ public class SpaceshipController : MonoBehaviour {
 		Vector2 rightThrustVector = rightThrust2.position - rightThrust1.position;
 		Vector2 leftThrustVector = leftThrust2.position - leftThrust1.position;
 
+		bool shotsFired = false;
+
 		if (leftThrustActivated) {
 			rb.AddForceAtPosition(leftThrustVector * speed * -1f, leftThrust1.position);
-//			GameObject bulletCopy = Instantiate(bullet, leftThrust1,);
+
+			if (timeSinceLastShot + timeBetweenShots < Time.time) {
+				GameObject bulletClone = (GameObject) (Instantiate(bullet, leftThrust1.position, transform.rotation));
+				bulletClone.GetComponent<Rigidbody2D>().velocity = leftThrustVector * 10f;
+				shotsFired = true;
+			}
 		}
 
 		if (rightThrustActivated) {
 			rb.AddForceAtPosition(rightThrustVector * speed * -1f, rightThrust1.position);
+
+			if (timeSinceLastShot + timeBetweenShots < Time.time) {
+				GameObject bulletClone = (GameObject) (Instantiate(bullet, rightThrust1.position, transform.rotation));
+				bulletClone.GetComponent<Rigidbody2D>().velocity = rightThrustVector * 10f;
+				shotsFired = true;
+			}
 		}
 
+		if (shotsFired) {
+			timeSinceLastShot = Time.time;
+		}
+
+		// Adjust drag for finer moevement
 		if ( !(leftThrustActivated || rightThrustActivated )) {
 			rb.angularDrag = 3f;
 		} else {
