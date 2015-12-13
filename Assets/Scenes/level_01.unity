@@ -2599,6 +2599,7 @@ MonoBehaviour:
   leftThrust1: {fileID: 1036763288}
   leftThrust2: {fileID: 1026372599}
   gameOverCanvas: {fileID: 1611429083}
+  victoryCanvas: {fileID: 1854648526}
   rightThrust1: {fileID: 903964654}
   rightThrust2: {fileID: 455727267}
   leftThrustActivated: 0
@@ -2656,7 +2657,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1854648527
 MonoBehaviour:
   m_ObjectHideFlags: 0
