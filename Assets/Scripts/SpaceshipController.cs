@@ -79,12 +79,12 @@ public class SpaceshipController : MonoBehaviour {
 			rb.angularDrag = 2f;
 
 		} else if ( leftThrustActivated || rightThrustActivated ) {
-			rb.angularDrag = 0.001f;
+			rb.angularDrag = 1.6f;
 		
 		} else if ( !(leftThrustActivated || rightThrustActivated )) {
 			rb.angularDrag = 3f;
 		} else {
-			rb.angularDrag = 0.01f;
+			rb.angularDrag = 1f;
 		}
 	}
 
