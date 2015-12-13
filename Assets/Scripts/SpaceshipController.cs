@@ -8,6 +8,8 @@ public class SpaceshipController : MonoBehaviour {
 	public Transform leftThrust1;
 	public Transform leftThrust2;
 
+	public GameObject gameOverCanvas;
+
 	public Transform rightThrust1;
 	public Transform rightThrust2;
 
@@ -30,6 +32,7 @@ public class SpaceshipController : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collision) { 
 		if (collision.gameObject.tag == "Commet") {
+			gameOverCanvas.SetActive(true);
 			Destroy(gameObject);
 		}
 	
