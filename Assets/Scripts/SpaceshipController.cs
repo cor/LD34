@@ -9,6 +9,7 @@ public class SpaceshipController : MonoBehaviour {
 	public Transform leftThrust2;
 
 	public GameObject gameOverCanvas;
+	public GameObject victoryCanvas;
 
 	public Transform rightThrust1;
 	public Transform rightThrust2;
@@ -51,7 +52,14 @@ public class SpaceshipController : MonoBehaviour {
 
 
 		ApplyThrusts();
+
+		GameObject[] commets = GameObject.FindGameObjectsWithTag("Commet");
+		if (commets.Length <= 0) {
+			victoryCanvas.SetActive(true);
+		}
+
 	}
+
 
 	void ApplyThrusts() {
 
